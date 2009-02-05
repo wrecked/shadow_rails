@@ -10,6 +10,6 @@ class RailsManifest < ShadowPuppet::Manifest
   recipe :mysql
   recipe :rails
   recipe :apache
-  recipe :install_passenger
+  recipe :passenger
   
 end	
