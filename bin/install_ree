@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# WARNING: This is painful. You really don't want to read this.
+
+PREFIX="/usr"
+REE="ruby-enterprise-1.8.6-20090201"
+
+pushd /tmp
+echo "Downloading REE"
+wget http://rubyforge.org/frs/download.php/51100/$REE.tar.gz
+echo "Untar REE"
+tar xvzf $REE.tar.gz
+
+echo "Installing REE"
+pushd $REE/source
+pushd ./vendor/google-perftools-0.99.2
+./configure --prefix=$PREFIX --disable-dependency-tracking
+make libtcmalloc_minimal.la
+rm -f $PREFIX/lib/libtcmalloc_minimal*.so*
+cp -pf .libs/libtcmalloc_minimal*.so* $PREFIX/lib/
+popd
+./configure --prefix=$PREFIX
+echo 'Perfoming an unspeakable atocity.'
+sed -i 's?LIBS = -ldl?LIBS = $(PRELIBS) -ldl?' ./Makefile
+echo "Makeing and installing REE"
+make PRELIBS="-Wl,-rpath,$PREFIX/lib -L$PREFIX/lib -ltcmalloc_minimal"
+make install
+popd
+
+echo "Cleaning up REE download"
+rm -rf $REE*
+popd
+
+
+
+

@@ -1,11 +1,13 @@
 #!/bin/bash
 
+RUBY="ree"
+
 echo "***Bootstrappin' the system!***"
 
 echo "Installing build packages"
 apt-get install -y build-essential zlib1g-dev libssl-dev libreadline5-dev
 
-./bin/install_ree
+./install_$RUBY
 
 echo "Installing Puppet and Facter"
 gem install puppet --no-rdoc --no-ri
