@@ -1,0 +1,17 @@
+#!/bin/bash
+
+GEMS="rubygems-1.3.1"
+
+echo "install Ruby Unenterprise Edition"
+apt-get install -y ruby libopenssl-ruby1.8 ruby-dev rdoc
+
+echo "install RubyGems from source"
+pushd /tmp
+wget http://rubyforge.org/frs/download.php/45905/$GEMS.tgz
+tar xvzf $GEMS.tgz
+pushd ./$GEMS
+ruby setup.rb --no-rdoc --no-ri
+popd
+rm -rf $GEMS*
+popd
+ln -s /usr/bin/gem1.8 /usr/bin/gem
