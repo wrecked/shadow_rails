@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# change this if you wants different rubies
 RUBY="ree"
 
 echo "***Bootstrappin' the system!***"
