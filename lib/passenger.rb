@@ -16,9 +16,9 @@ module Passenger
    
    path = "/usr/lib/ruby/gems/1.8/gems/passenger-#{PASSENGER_VERSION}"
 
-   exec { :build-passenger, :cwd => path, 
+   exec :build-passenger, {:cwd => path, 
                              :command => '/usr/bin/ruby -S rake clean apache2', 
-                             :creates => "#{path}/ext/apache2/mod_passenger.so"}
+                             :creates => "#{path}/ext/apache2/mod_passenger.so" }
 
    contents = <<-CONTENTS
      LoadModule passenger_module #{path}/ext/apache2/mod_passenger.so
@@ -39,8 +39,8 @@ module Passenger
          :contents => contents,
          :require  => [package(:passenger), exec(:build-passenger)]
 
-   exec {'enable-passenger', :command => 'a2enmod passenger', 
-                             :creates => '/etc/apache2/mods-enabled/passenger.load'}  
+   exec 'enable-passenger', { :command => 'a2enmod passenger', 
+                             :creates => '/etc/apache2/mods-enabled/passenger.load' }  
  end
 
 
