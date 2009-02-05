@@ -1,4 +1,4 @@
-module MySQL
+module MySQLRecipes
   
   def mysql
     package "mysql-server", :ensure => :installed

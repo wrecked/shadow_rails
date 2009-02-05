@@ -1,6 +1,6 @@
 PASSENGER_VERSION = "2.0.6"
 
-module Passenger
+module PassengerRecipes
   
   def apache
     package "apache2-mpm-worker", :ensure => :installed 
