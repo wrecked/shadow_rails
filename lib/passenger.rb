@@ -9,14 +9,14 @@ module Passenger
   end
 
   def passenger
-   package "passenger", :ensure => :installed, :provider => :gem
+   package :passenger_gem, :ensure => :installed, :provider => :gem
 
    # this needs to be attached to a fact
    #version = Gem::SourceIndex.from_installed_gems.find_name("passenger").last.version.to_s
    
    path = "/usr/lib/ruby/gems/1.8/gems/passenger-#{PASSENGER_VERSION}"
 
-   exec :build-passenger, {:cwd => path, 
+   exec :build_passenger, {:cwd => path, 
                              :command => '/usr/bin/ruby -S rake clean apache2', 
                              :creates => "#{path}/ext/apache2/mod_passenger.so" }
 
@@ -27,7 +27,7 @@ module Passenger
    file '/etc/apache2/mods-available/passenger.load',
          :ensure   => :present,
          :contents => contents,
-         :require  => [package(:passenger), exec(:build-passenger)]
+         :require  => [package(:passenger_gem), exec(:build_passenger)]
      
    contents = <<-CONTENTS
      PassengerRoot #{path}
@@ -37,9 +37,9 @@ module Passenger
    file '/etc/apache2/mods-available/passenger.conf',
          :ensure   => :present,
          :contents => contents,
-         :require  => [package(:passenger), exec(:build-passenger)]
+         :require  => [package(:passenger_gem), exec(:build_passenger)]
 
-   exec 'enable-passenger', { :command => 'a2enmod passenger', 
+   exec 'enable_passenger', { :command => 'a2enmod passenger', 
                              :creates => '/etc/apache2/mods-enabled/passenger.load' }  
  end
 
