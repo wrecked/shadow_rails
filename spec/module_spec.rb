@@ -5,14 +5,10 @@
 
 require File.join(File.dirname(__FILE__), "../lib",'facts.rb')
 
-describe "My system" do
+describe "My rails machine" do
   
   before :each do
     @installed = facts(:installed)
-  end
-  
-  it "has gcc installed and available" do
-    @installed[:gcc].should equal(true)
   end
   
   it "has ruby on rails installed and available" do
@@ -27,20 +23,8 @@ describe "My system" do
     @installed[:mysql_gem].should equal(true)
   end
   
-  it "has mysql gem installed and available" do
-    @installed[:shadow_puppet_gem].should equal(true)
-  end
-  
-  it "has git installed and available" do
-    @installed[:git].should equal(true)
-  end
-  
-  it "has puppet installed and available" do
-    @installed[:puppet].should equal(true)
-  end
-  
-  it "has ruby gems installed and available" do
-    @installed[:gem].should equal(true)
+  it "has passenger gem installed and available" do
+    @installed[:passenger_gem].should equal(true)
   end
   
 end

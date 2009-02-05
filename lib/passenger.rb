@@ -1,3 +1,5 @@
+PASSENGER_VERSION = "2.0.6"
+
 module Passenger
   
   def apache
@@ -9,11 +11,13 @@ module Passenger
   def passenger
    package "passenger", :ensure => :installed, :provider => :gem
 
-   version = Gem::SourceIndex.from_installed_gems.find_name("passenger").last.version.to_s
-   path = "/usr/lib/ruby/gems/1.8/gems/passenger-#{version}"
+   # this needs to be attached to a fact
+   #version = Gem::SourceIndex.from_installed_gems.find_name("passenger").last.version.to_s
+   
+   path = "/usr/lib/ruby/gems/1.8/gems/passenger-#{PASSENGER_VERSION}"
 
    exec { :build-passenger, :cwd => path, 
-                             :command => '/usr/bin/ruby1.8 -S rake clean apache2', 
+                             :command => '/usr/bin/ruby -S rake clean apache2', 
                              :creates => "#{path}/ext/apache2/mod_passenger.so"}
 
    contents = <<-CONTENTS
@@ -27,7 +31,7 @@ module Passenger
      
    contents = <<-CONTENTS
      PassengerRoot #{path}
-     PassengerRuby /usr/bin/ruby1.8
+     PassengerRuby /usr/bin/ruby
    CONTENTS
 
    file '/etc/apache2/mods-available/passenger.conf',

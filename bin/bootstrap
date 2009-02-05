@@ -15,7 +15,7 @@ gem install puppet --no-rdoc --no-ri
 gem install facter --version 1.5.2 --no-rdoc --no-ri
 
 echo "Installing RSpec"
-gem install rpec --no-rdoc --no-ri
+gem install rspec --no-rdoc --no-ri
 
 echo "Installing ShadowPuppet and ShadowFacter"
 gem install shadow_puppet shadow_facter --no-rdoc --no-ri

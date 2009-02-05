@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# WARNING: This is painful. You really don't want to read this.
+# Maybe one day, this will be hidden away in a deb.
 
 PREFIX="/usr"
 REE="ruby-enterprise-1.8.6-20090201"
