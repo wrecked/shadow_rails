@@ -1,4 +1,3 @@
-require 'rubygems'
 require 'shadow_facter'
 
 def installed_fact(n)

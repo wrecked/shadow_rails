@@ -3,7 +3,7 @@
 #
 # run with 'spec -c installed_test.rb'
 
-require File.join(File.dirname(__FILE__), 'facts.rb')
+require File.join(File.dirname(__FILE__), "../lib",'facts.rb')
 
 describe "My system" do
   

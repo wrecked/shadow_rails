@@ -1,6 +1,12 @@
+Run the following as 'sudo':
+
 apt-get install git-core
 git clone git://github.com/wrecked/shadow_rails.git
+cd shadow_rails
 ./bin/bootstrap
 spec -c spec/module_spec.rb
-shadow_puppet lib/rails_manifest.rb
+shadow_puppet ./rails_manifest.rb
 spec -c spec/module_spec.rb
+
+TODO:
+-Move REE into shadow_puppet.
