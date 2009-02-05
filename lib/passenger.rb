@@ -20,23 +20,23 @@ module Passenger
                              :command => '/usr/bin/ruby -S rake clean apache2', 
                              :creates => "#{path}/ext/apache2/mod_passenger.so" }
 
-   contents = <<-CONTENTS
+   load_content = <<-LOAD_CONTENT
      LoadModule passenger_module #{path}/ext/apache2/mod_passenger.so
-   CONTENTS
+   LOAD_CONTENT
 
    file '/etc/apache2/mods-available/passenger.load',
          :ensure   => :present,
-         :contents => contents,
+         :content => load_content,
          :require  => [package(:passenger_gem), exec(:build_passenger)]
      
-   contents = <<-CONTENTS
+   conf_content = <<-CONF_CONTENT
      PassengerRoot #{path}
      PassengerRuby /usr/bin/ruby
-   CONTENTS
+   CONF_CONTENT
 
    file '/etc/apache2/mods-available/passenger.conf',
          :ensure   => :present,
-         :contents => contents,
+         :contents => content,
          :require  => [package(:passenger_gem), exec(:build_passenger)]
 
    exec 'enable_passenger', { :command => 'a2enmod passenger', 
