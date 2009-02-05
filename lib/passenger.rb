@@ -36,7 +36,7 @@ module Passenger
 
    file '/etc/apache2/mods-available/passenger.conf',
          :ensure   => :present,
-         :contents => conf_content,
+         :content => conf_content,
          :require  => [package(:passenger_gem), exec(:build_passenger)]
 
    exec 'enable_passenger', { :command => '/usr/sbin/a2enmod passenger', 
