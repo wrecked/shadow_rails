@@ -40,7 +40,8 @@ module Passenger
          :require  => [package(:passenger_gem), exec(:build_passenger)]
 
    exec 'enable_passenger', { :command => 'a2enmod passenger', 
-                             :creates => '/etc/apache2/mods-enabled/passenger.load' }  
+                             :creates => '/etc/apache2/mods-enabled/passenger.load',
+                             :require => package("apache2-mpm-worker")}  
  end
 
 
