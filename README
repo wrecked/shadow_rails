@@ -7,6 +7,3 @@ cd shadow_rails
 spec -c spec/module_spec.rb
 shadow_puppet ./rails_manifest.rb
 spec -c spec/module_spec.rb
-
-TODO:
--Move REE into shadow_puppet.
