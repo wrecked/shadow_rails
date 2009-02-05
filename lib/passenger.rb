@@ -8,7 +8,7 @@ module Passenger
     service :apache2, :require => package("apache2-mpm-worker")
   end
 
-  def passenger
+  def install_passenger
    package :passenger, :ensure => :installed, :provider => :gem
 
    # this needs to be attached to a fact
