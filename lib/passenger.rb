@@ -39,7 +39,7 @@ module Passenger
          :contents => conf_content,
          :require  => [package(:passenger_gem), exec(:build_passenger)]
 
-   exec 'enable_passenger', { :command => 'a2enmod passenger', 
+   exec 'enable_passenger', { :command => '/usr/sbin/a2enmod passenger', 
                              :creates => '/etc/apache2/mods-enabled/passenger.load',
                              :require => package("apache2-mpm-worker")}  
  end
