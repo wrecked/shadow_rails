@@ -1,0 +1,47 @@
+#!/bin/bash
+
+GEMS="rubygems-1.3.1"
+REE="ruby-enterprise-1.8.6-20090201"
+
+echo "***Bootstrappin' the system!***"
+
+echo "Installing build packages"
+apt-get install -y build-essential zlib1g-dev libssl-dev libreadline5-dev
+
+echo "install Ruby Unenterprise Edition"
+apt-get install -y ruby libopenssl-ruby1.8 ruby-dev rdoc
+
+echo "install RubyGems from source"
+pushd /tmp
+wget http://rubyforge.org/frs/download.php/45905/$GEMS.tgz
+tar xvzf $GEMS.tgz
+pushd ./$GEMS
+ruby setup.rb --no-rdoc --no-ri
+popd
+rm -rf $GEMS*
+popd
+ln -s /usr/bin/gem1.8 /usr/bin/gem
+
+echo "Installing Puppet and Facter"
+gem install puppet --no-rdoc --no-ri
+gem install facter --version 1.5.2 --no-rdoc --no-ri
+
+echo "Installing RSpec"
+gem install rpec --no-rdoc --no-ri
+
+echo "Installing ShadowPuppet and ShadowFacter"
+gem install shadow_puppet shadow_facter --no-rdoc --no-ri
+
+pushd /tmp
+echo "Downloading REE"
+wget http://rubyforge.org/frs/download.php/51100/$REE.tar.gz
+echo "Untar REE"
+tar xvzf $REE.tar.gz
+echo "Install REE to /opt/ruby-enterprise"
+./$REE/installer --auto=/opt/ruby-enterprise
+echo "Put REE in path"
+echo 'PATH="/opt/ruby-enterprise/bin:$PATH"' >> /etc/environment
+source /etc/environment
+echo "Cleaning up REE download"
+rm -rf $REE*
+popd
