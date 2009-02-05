@@ -1,0 +1,6 @@
+apt-get install git-core
+git clone git://github.com/wrecked/shadow_rails.git
+./bin/bootstrap
+spec -c spec/module_spec.rb
+shadow_puppet lib/rails_manifest.rb
+spec -c spec/module_spec.rb
