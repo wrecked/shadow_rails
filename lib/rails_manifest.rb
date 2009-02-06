@@ -13,7 +13,7 @@ class RailsManifest < ShadowPuppet::Manifest
   include RailsRecipes
   include CapistranoRecipes
   
-  class << self; attr_accessor :application end
+  class << self; attr_accessor :name end
   
   recipe :mysql_server, :mysql_gem
   recipe :apache_server

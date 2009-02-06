@@ -4,7 +4,7 @@ require './lib/rails_manifest.rb'
 class ApplicationManifest < RailsManifest
   
   # name your app
-  application = "birddog"
+  self.name = "birddog"
   
   recipe :passenger_site, :domain => "birddog.railsmachine.com"
   recipe :mysql_user, :password => "secret"
