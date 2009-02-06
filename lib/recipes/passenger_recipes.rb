@@ -18,23 +18,23 @@ module PassengerRecipes
      LoadModule passenger_module #{path}/ext/apache2/mod_passenger.so
    LOAD_CONTENT
 
-   file '/etc/apache2/mods-available/passenger.load',
+   file '/etc/apache2/mods-available/passenger.load', {
          :ensure   => :present,
          :content => load_content,
-         :require  => [package(:passenger), exec(:build_passenger)]
+         :require  => [package(:passenger), exec(:build_passenger)] }
      
    conf_content = <<-CONF_CONTENT
      PassengerRoot #{path}
      PassengerRuby /usr/bin/ruby
    CONF_CONTENT
 
-   file '/etc/apache2/mods-available/passenger.conf',
+   file '/etc/apache2/mods-available/passenger.conf', {
          :ensure   => :present,
          :content => conf_content,
-         :require  => [package(:passenger), exec(:build_passenger)]
+         :require  => [package(:passenger), exec(:build_passenger)] }
 
    exec 'enable_passenger', { :command => '/usr/sbin/a2enmod passenger', 
                              :creates => '/etc/apache2/mods-enabled/passenger.load',
                              :require => package("apache2-mpm-worker")}  
- end
+  end
 end
