@@ -17,19 +17,17 @@ module PassengerRecipes
                              :creates => "#{path}/ext/apache2/mod_passenger.so", 
                              :require => package("passenger") }
 
-    load_content = <<-LOAD_CONTENT
-      LoadModule passenger_module #{path}/ext/apache2/mod_passenger.so
-    LOAD_CONTENT
-
+    # TODO: ShadowPuppet needs template helper
     load_file = '/etc/apache2/mods-available/passenger.load'
+    load_template = File.join(File.dirname(__FILE__), "templates", "passenger.load.erb")
+    load_template_contents = File.read(load_template)
+    load_content = ERB.new(load_template_contents).result(binding)
     file load_file, { :ensure => :present, :content => load_content }
-     
-    conf_content = <<-CONF_CONTENT
-      PassengerRoot #{path}
-      PassengerRuby /usr/bin/ruby
-    CONF_CONTENT
 
     conf_file = '/etc/apache2/mods-available/passenger.conf'
+    conf_template = File.join(File.dirname(__FILE__), "templates", "passenger.conf.erb")
+    conf_template_contents = File.read(conf_template)
+    conf_content = ERB.new(conf_template_contents).result(binding)
     file conf_file, { :ensure => :present, :content => conf_content }
 
     exec "enable_passenger", { :command => '/usr/sbin/a2enmod passenger', 
