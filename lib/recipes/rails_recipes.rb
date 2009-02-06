@@ -4,10 +4,15 @@ module RailsRecipes
   end
   
   def rails_user
-    user "rails", :ensure => :present 
+    user RAILS_USER, :ensure => :present 
   end
   
   def rails_prefix
-    file "/var/rails", { :ensure => :directory, :owner => "rails", :group => "rails", :require => user("rails") }
+    file RAILS_PREFIX, { :ensure => :directory, :owner => RAILS_USER, :group => RAILS_PREFIX, :require => user(RAILS_USER) }
+  end
+  
+  def rails_root(args)
+    root = "#{RAILS_PREFIX}/#{args[:name]}"
+    file rails_root, { :ensure => :directory, :owner => RAILS_USER, :group => RAILS_GROUP, :require => user(RAILS_USER) }
   end
 end
