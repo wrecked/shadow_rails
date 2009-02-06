@@ -1,9 +1,9 @@
 require './lib/rails_manifest.rb'
 
+# This class could handle configuration of several applications.
 class ApplicationManifest < RailsManifest
   
   name = "blog"
-  
   recipe :rails_root, :name => name
   recipe :capistrano_setup, :name => name
   recipe :passenger_site, :name => name, :domain => "blog.railsmachine.com"

@@ -39,7 +39,7 @@ module PassengerRecipes
   def passenger_site(args)
     name = args[:name]
     domain = args[:domain]
-    
+    root = RAILS_ROOT
     # TODO: ShadowPuppet needs template helper
     conf_file = 'etc/apache2/sites-available/#{name}'
     conf_template = File.join(File.dirname(__FILE__), "../../templates", "passenger.vhost.erb")
