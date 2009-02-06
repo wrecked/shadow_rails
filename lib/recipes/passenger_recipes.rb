@@ -36,7 +36,7 @@ module PassengerRecipes
   end
   
   def passenger_site(args)
-    name = @@name
+    name = self.application
     domain = args[:domain]
     
     # TODO: ShadowPuppet needs template helper
