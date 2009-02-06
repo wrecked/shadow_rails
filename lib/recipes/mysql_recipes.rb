@@ -10,4 +10,11 @@ module MySQLRecipes
     package "mysql", :ensure => :installed, :provider => :gem, :require => package("libmysqlclient15-dev")
   end
   
+  def mysql_user
+    
+  end
+  
+  def mysql_database
+    
+  end
 end

@@ -3,9 +3,11 @@
 #
 # run with 'spec -c module_spec.rb'
 
+# TODO: more tests
+
 require File.join(File.dirname(__FILE__), 'spec_facts.rb')
 
-describe "My rails machine" do
+describe "My rails system" do
   
   before :each do
     @installed = facts(:installed)

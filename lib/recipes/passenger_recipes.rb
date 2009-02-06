@@ -1,5 +1,3 @@
-PASSENGER_VERSION = "2.0.6"
-
 module PassengerRecipes
 
   def passenger_gem
@@ -38,7 +36,7 @@ module PassengerRecipes
   end
   
   def passenger_site(args)
-    name = args[:name]
+    name = @@name
     domain = args[:domain]
     
     # TODO: ShadowPuppet needs template helper

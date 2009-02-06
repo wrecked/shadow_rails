@@ -1,16 +1,13 @@
 require './lib/rails_manifest.rb'
 
-# This class could handle configuration of several applications.
+# This class is for a *single* application.
 class ApplicationManifest < RailsManifest
   
   # name your app
-  name = "birddog"
-  domain = "birddog.railsmachine.com"
+  @@name = "birddog"
   
-  recipe :rails_root, :name => name
-  recipe :capistrano_setup, :name => name
-  recipe :passenger_site, :name => name, :domain => domain
-  recipe :application_packages
+  recipe :passenger_site, :domain => "birddog.railsmachine.com"
+  recipe :mysql_user, :password = "secret"
   
   # add your gems and other good stuff here
   def application_packages
