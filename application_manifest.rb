@@ -1,4 +1,4 @@
-require 'lib/rails_manifest.rb'
+require './lib/rails_manifest.rb'
 
 class ApplicationManifest < RailsManifest
   
