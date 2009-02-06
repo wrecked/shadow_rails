@@ -12,7 +12,7 @@ module RailsRecipes
   end
   
   def rails_root(args)
-    root = "#{RAILS_PREFIX}/#{args[:name]}"
-    file rails_root, { :ensure => :directory, :owner => RAILS_USER, :group => RAILS_GROUP, :require => user(RAILS_USER) }
+    path = "#{RAILS_PREFIX}/#{args[:name]}"
+    file path, { :ensure => :directory, :owner => RAILS_USER, :group => RAILS_GROUP, :require => user(RAILS_USER) }
   end
 end
