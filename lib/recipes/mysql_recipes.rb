@@ -2,7 +2,7 @@ module MySQLRecipes
   
   def mysql_server
     package "mysql-server", :ensure => :installed
-    service :mysql, :require => package("mysql-server")
+    service "mysql", :require => package("mysql-server")
   end
   
   def mysql_gem

@@ -12,7 +12,7 @@ module PassengerRecipes
    
     path = "/usr/lib/ruby/gems/1.8/gems/passenger-#{PASSENGER_VERSION}"
 
-    exec :build_passenger, {:cwd => path, 
+    exec "build_passenger", {:cwd => path, 
                              :command => '/usr/bin/ruby -S rake clean apache2', 
                              :creates => "#{path}/ext/apache2/mod_passenger.so", 
                              :require => package("passenger") }
@@ -32,7 +32,7 @@ module PassengerRecipes
     conf_file = '/etc/apache2/mods-available/passenger.conf'
     file conf_file, { :ensure => :present, :content => conf_content }
 
-    exec 'enable_passenger', { :command => '/usr/sbin/a2enmod passenger', 
+    exec "enable_passenger", { :command => '/usr/sbin/a2enmod passenger', 
                              :creates => '/etc/apache2/mods-enabled/passenger.load',
                              :require => [package("apache2-mpm-worker"), file(conf_file), file(load_file)]}  
   end
