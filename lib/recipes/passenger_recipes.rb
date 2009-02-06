@@ -10,7 +10,7 @@ module PassengerRecipes
     # this needs to be attached to a fact
     #version = Gem::SourceIndex.from_installed_gems.find_name("passenger").last.version.to_s
    
-    path = "/usr/lib/ruby/gems/1.8/gems/passenger-#{PASSENGER_VERSION}"
+    path = "/usr/lib/ruby/gems/1.8/gems/passenger-#{Configuration[:passenger_version]}"
     
     package "apache2-threaded-dev", :ensure => :installed
     exec "build_passenger", {:cwd => path, 
@@ -38,13 +38,14 @@ module PassengerRecipes
   end
   
   def passenger_site(args)
-    name = Configuration.name
-    domain = args[:domain]
+    name = Configuration[:name]
+    domain = Configuration[:domain]
     
     # TODO: ShadowPuppet needs template helper
     conf_file = "/etc/apache2/sites-available/#{name}"
     conf_template = File.join(File.dirname(__FILE__), "../../templates", "passenger.vhost.erb")
     conf_template_contents = File.read(conf_template)
+    doc_root = Configuration[:prefix] + "/" + name 
     conf_content = ERB.new(conf_template_contents).result(binding)
     file conf_file, { :ensure => :present, :content => conf_content }
     

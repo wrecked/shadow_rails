@@ -1,10 +1,10 @@
 require './lib/rails_manifest.rb'
 
-# This class is for a *single* application.
+# This class is for a *single* application. And yes, these could be easily implemented in json/yaml.
 class ApplicationManifest < RailsManifest
   
   # name your app
-  name :birddog
+  name "birddog"
   domain "birddog.railsmachine.com"
   database_password "secret"
   

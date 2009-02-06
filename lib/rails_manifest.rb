@@ -1,10 +1,10 @@
 require 'shadow_puppet'
 require File.dirname(__FILE__) + '/recipes.rb'
 
-RAILS_USER = "rails"
-RAILS_GROUP = "rails"
-RAILS_PREFIX = "/var/rails"
-PASSENGER_VERSION = "2.0.6"
+Configuration[:user] = "rails"
+Configuration[:group] = "rails"
+Configuration[:prefix] = "/var/rails"
+Configuration[:passenger_version] = "2.0.6"
 
 class RailsManifest < ShadowPuppet::Manifest
   include MySQLRecipes
@@ -14,16 +14,16 @@ class RailsManifest < ShadowPuppet::Manifest
   include CapistranoRecipes
   
   class << self
-    def name(name)
-      Configuration.name = name.to_s
+    def name(value)
+      Configuration[:name] = value
     end
     
-    def domain(name)
-      Configuration.domain = name
+    def domain(value)
+      Configuration[:domain] = value
     end
     
-    def database_password(password)
-      Configuration.database_password = password
+    def database_password(value)
+      Configuration[:database_password] = value
     end
   end
   
@@ -33,8 +33,8 @@ class RailsManifest < ShadowPuppet::Manifest
   recipe :rails_gem, :rails_user, :rails_prefix, :rails_root
   recipe :mysql_database
   recipe :application_packages
-  recipe :passenger_site, :domain => Configuration.domain
-  recipe :mysql_user, :password => Configuration.database_password
+  recipe :passenger_site
+  recipe :mysql_user
   
   # implement this in subclass if you want
   def applications_packages
