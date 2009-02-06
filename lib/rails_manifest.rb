@@ -7,6 +7,7 @@ RAILS_PREFIX = "/var/rails"
 PASSENGER_VERSION = "2.0.6"
 
 class RailsManifest < ShadowPuppet::Manifest
+  @name = :application
   include MySQLRecipes
   include PassengerRecipes
   include ApacheRecipes
@@ -21,7 +22,7 @@ class RailsManifest < ShadowPuppet::Manifest
   recipe :application_packages
   
   def self.name(n)
-    @name = n
+    @name = n.to_s
   end
   
   # implement this in subclass
