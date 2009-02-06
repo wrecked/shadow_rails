@@ -5,9 +5,8 @@ class ApplicationManifest < RailsManifest
   
   # name your app
   name :birddog
-  
-  recipe :passenger_site, :domain => "birddog.railsmachine.com"
-  recipe :mysql_user, :password => "secret"
+  domain "birddog.railsmachine.com"
+  database_password "secret"
   
   # add your gems and other good stuff here
   def application_packages
