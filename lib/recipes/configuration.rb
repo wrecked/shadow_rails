@@ -1,6 +1,6 @@
 class Configuration
   class << self
-    @values = {}
+    @values = Hash.new
     def [](key)
       @values[key]
     end
