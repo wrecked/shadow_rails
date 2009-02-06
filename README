@@ -1,6 +1,6 @@
 Run the following as 'sudo':
 
-apt-get install git-core
+apt-get install -y git-core
 git clone git://github.com/wrecked/shadow_rails.git
 cd shadow_rails
 ./bin/bootstrap
