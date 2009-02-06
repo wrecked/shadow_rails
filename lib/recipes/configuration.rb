@@ -7,7 +7,7 @@ class Configuration
     end
     def []=(key, value)
       @values ||= Hash.new
-      @values[:key] = value
+      @values[key] = value
     end
   end
 end
