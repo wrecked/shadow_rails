@@ -50,7 +50,7 @@ module PassengerRecipes
     
     exec "passenger_enable_site", { :command => "/usr/sbin/a2ensite #{name}", 
                              :creates => '/etc/apache2/sites-enabled/#{name}',
-                             :require => [package("apache2-mpm-worker"), file(conf_file)]
+                             :require => [package("apache2-mpm-worker"), file(conf_file)],
                              :notify => service("apache2")}
   end
 end
