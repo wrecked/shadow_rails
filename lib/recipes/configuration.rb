@@ -1,10 +1,12 @@
 class Configuration
   class << self
-    @values = Hash.new
+    
     def [](key)
+      @values ||= Hash.new
       @values[key]
     end
     def []=(key, value)
+      @values ||= Hash.new
       @values[:key] = value
     end
   end
