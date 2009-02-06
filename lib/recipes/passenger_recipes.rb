@@ -1,3 +1,5 @@
+require File.join(File.dirname(__FILE__), 'configuration.rb')
+
 module PassengerRecipes
 
   def passenger_gem
@@ -36,7 +38,7 @@ module PassengerRecipes
   end
   
   def passenger_site(args)
-    name = @@name
+    name = Base.name
     domain = args[:domain]
     
     # TODO: ShadowPuppet needs template helper

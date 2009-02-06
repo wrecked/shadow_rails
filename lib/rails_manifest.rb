@@ -21,8 +21,8 @@ class RailsManifest < ShadowPuppet::Manifest
   recipe :mysql_database
   recipe :application_packages
   
-  def self.name(n)
-    @@name = n.to_s
+  def self.name(name)
+    Configuration.name = name.to_s
   end
   
   # implement this in subclass
