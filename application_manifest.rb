@@ -6,6 +6,11 @@ class ApplicationManifest < RailsManifest
   recipe :rails_root, :name => name
   recipe :capistrano_setup, :name => name
   
-  # add your gems here and other good stuff
+  recipe :application_packages
   
+  # add your gems and other good stuff here
+  def application_packages
+    # package "some_awesome_gem", :ensure => :installed, :provider => :gem
+    # package "some_awesome_native_package", :ensure => :installed
+  end
 end
