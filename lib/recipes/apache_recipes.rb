@@ -1,3 +1,5 @@
+require File.join(File.dirname(__FILE__), 'configuration.rb')
+
 module ApacheRecipes
 
   def apache_server

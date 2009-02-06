@@ -2,7 +2,7 @@ require File.join(File.dirname(__FILE__), 'configuration.rb')
 
 module CapistranoRecipes
   def capistrano_setup
-    root_path = "#{RAILS_PREFIX}/#{Configuration[:name]}"
+    root_path = "#{Configuration[:prefix]}/#{Configuration[:name]}"
     
     file_args = { :ensure => :directory, :owner => Configuration[:user], :group => Configuration[:group], :require => file(root_path) }
     file "#{root_path}/shared", file_args

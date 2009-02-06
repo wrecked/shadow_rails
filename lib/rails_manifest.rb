@@ -1,17 +1,17 @@
 require 'shadow_puppet'
 require File.dirname(__FILE__) + '/recipes.rb'
 
+Configuration[:user] = "rails"
+Configuration[:group] = "rails"
+Configuration[:prefix] = "/var/rails"
+Configuration[:passenger_version] = "2.0.6"
+
 class RailsManifest < ShadowPuppet::Manifest
   include MySQLRecipes
   include PassengerRecipes
   include ApacheRecipes
   include RailsRecipes
   include CapistranoRecipes
-  
-  Configuration[:user] = "rails"
-  Configuration[:group] = "rails"
-  Configuration[:prefix] = "/var/rails"
-  Configuration[:passenger_version] = "2.0.6"
   
   class << self
     def name(value)
