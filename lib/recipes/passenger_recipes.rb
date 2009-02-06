@@ -34,7 +34,7 @@ module PassengerRecipes
 
     exec "enable_passenger", { :command => '/usr/sbin/a2enmod passenger', 
                              :creates => '/etc/apache2/mods-enabled/passenger.load',
-                             :require => [package("apache2-mpm-worker"), file(conf_file), file(load_file)]}  
+                             :require => [exec("build_passenger"), package("apache2-mpm-worker"), file(conf_file), file(load_file)]}  
   end
   
   def passenger_site(args)
@@ -47,11 +47,10 @@ module PassengerRecipes
     conf_template_contents = File.read(conf_template)
     doc_root = Configuration[:prefix] + "/" + name 
     conf_content = ERB.new(conf_template_contents).result(binding)
-    file conf_file, { :ensure => :present, :content => conf_content }
+    file conf_file, { :ensure => :present, :content => conf_content, :notify => service("apache2") }
     
     exec "passenger_enable_site", { :command => "/usr/sbin/a2ensite #{name}", 
                              :creates => '/etc/apache2/sites-enabled/#{name}',
-                             :require => [package("apache2-mpm-worker"), file(conf_file)],
-                             :notify => service("apache2")}
+                             :require => [package("apache2-mpm-worker"), file(conf_file)]}
   end
 end
