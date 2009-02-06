@@ -1,4 +1,4 @@
 <VirtualHost *:80>
     ServerName <%= domain %>
-    DocumentRoot <%= root + "/" + name %>
+    DocumentRoot <%= RAILS_PREFIX + "/" + name %>
 </VirtualHost>
