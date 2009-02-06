@@ -37,9 +37,4 @@ module PassengerRecipes
                              :creates => '/etc/apache2/mods-enabled/passenger.load',
                              :require => package("apache2-mpm-worker")}  
  end
-
-
- def rails
-   package "rails", :ensure => :installed, :provider => :gem
- end
 end
