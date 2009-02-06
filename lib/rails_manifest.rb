@@ -14,10 +14,18 @@ class RailsManifest < ShadowPuppet::Manifest
   include CapistranoRecipes
   
   class << self
-    attr_accessor :domain, :database_password
+    attr_reader :domain, :database_password
     
     def name(name)
       Configuration.name = name.to_s
+    end
+    
+    def domain(name)
+      @domain = name
+    end
+    
+    def database_password(password)
+      @database_password = password
     end
   end
   
