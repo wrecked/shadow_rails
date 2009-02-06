@@ -1,5 +1,5 @@
 module RailsRecipes
-  def rails
+  def rails_gem
     package "rails", :ensure => :installed, :provider => :gem
   end
 end
