@@ -3,7 +3,7 @@ PASSENGER_VERSION = "2.0.6"
 module PassengerRecipes
 
   def passenger_gem
-    package :passenger, :ensure => :installed, :provider => :gem
+    package "passenger", :ensure => :installed, :provider => :gem
   end
    
   def passenger_apache_module 
@@ -15,7 +15,7 @@ module PassengerRecipes
     exec :build_passenger, {:cwd => path, 
                              :command => '/usr/bin/ruby -S rake clean apache2', 
                              :creates => "#{path}/ext/apache2/mod_passenger.so", 
-                             :require => package(:passenger) }
+                             :require => package("passenger") }
 
     load_content = <<-LOAD_CONTENT
       LoadModule passenger_module #{path}/ext/apache2/mod_passenger.so
