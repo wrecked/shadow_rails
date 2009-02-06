@@ -3,7 +3,7 @@
 #
 # run with 'spec -c module_spec.rb'
 
-require File.join(File.dirname(__FILE__), 'facts.rb')
+require File.join(File.dirname(__FILE__), 'spec_facts.rb')
 
 describe "My rails machine" do
   
