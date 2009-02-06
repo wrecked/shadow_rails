@@ -22,7 +22,7 @@ class RailsManifest < ShadowPuppet::Manifest
   recipe :application_packages
   
   def self.name(n)
-    @name = n.to_s
+    @@name = n.to_s
   end
   
   # implement this in subclass
