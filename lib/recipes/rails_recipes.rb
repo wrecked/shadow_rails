@@ -8,7 +8,7 @@ module RailsRecipes
   end
   
   def rails_prefix
-    file RAILS_PREFIX, { :ensure => :directory, :owner => RAILS_USER, :group => RAILS_PREFIX, :require => user(RAILS_USER) }
+    file RAILS_PREFIX, { :ensure => :directory, :owner => RAILS_USER, :group => RAILS_GROUP, :require => user(RAILS_USER) }
   end
   
   def rails_root(args)
