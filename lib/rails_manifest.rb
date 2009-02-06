@@ -14,18 +14,16 @@ class RailsManifest < ShadowPuppet::Manifest
   include CapistranoRecipes
   
   class << self
-    attr_reader :domain, :database_password
-    
     def name(name)
       Configuration.name = name.to_s
     end
     
     def domain(name)
-      @domain = name
+      Configuration.domain = name
     end
     
     def database_password(password)
-      @database_password = password
+      Configuration.database_password = password
     end
   end
   
@@ -35,8 +33,8 @@ class RailsManifest < ShadowPuppet::Manifest
   recipe :rails_gem, :rails_user, :rails_prefix, :rails_root
   recipe :mysql_database
   recipe :application_packages
-  recipe :passenger_site, :domain => @domain
-  recipe :mysql_user, :password => @database_password
+  recipe :passenger_site, :domain => Configuration.domain
+  recipe :mysql_user, :password => Configuration.database_password
   
   # implement this in subclass if you want
   def applications_packages
