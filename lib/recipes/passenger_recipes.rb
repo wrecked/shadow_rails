@@ -20,8 +20,7 @@ module PassengerRecipes
 
    file '/etc/apache2/mods-available/passenger.load', {
          :ensure   => :present,
-         :content => load_content,
-         :require  => [package(:passenger), exec(:build_passenger)] }
+         :content => load_content }
      
    conf_content = <<-CONF_CONTENT
      PassengerRoot #{path}
@@ -30,8 +29,7 @@ module PassengerRecipes
 
    file '/etc/apache2/mods-available/passenger.conf', {
          :ensure   => :present,
-         :content => conf_content,
-         :require  => [package(:passenger), exec(:build_passenger)] }
+         :content => conf_content }
 
    exec 'enable_passenger', { :command => '/usr/sbin/a2enmod passenger', 
                              :creates => '/etc/apache2/mods-enabled/passenger.load',
