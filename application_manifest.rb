@@ -2,10 +2,11 @@ require './lib/rails_manifest.rb'
 
 class ApplicationManifest < RailsManifest
   
-  name = "test"
+  name = "blog"
   
   recipe :rails_root, :name => name
   recipe :capistrano_setup, :name => name
+  recipe :passenger_site, :name => name, :domain => "blog.railsmachine.com"
   
   recipe :application_packages
   

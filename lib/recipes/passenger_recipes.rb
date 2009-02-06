@@ -24,6 +24,7 @@ module PassengerRecipes
     load_content = ERB.new(load_template_contents).result(binding)
     file load_file, { :ensure => :present, :content => load_content }
 
+    # TODO: ShadowPuppet needs template helper
     conf_file = '/etc/apache2/mods-available/passenger.conf'
     conf_template = File.join(File.dirname(__FILE__), "../../templates", "passenger.conf.erb")
     conf_template_contents = File.read(conf_template)
@@ -35,10 +36,19 @@ module PassengerRecipes
                              :require => [package("apache2-mpm-worker"), file(conf_file), file(load_file)]}  
   end
   
-  def passenger_vhost(args)
+  def passenger_site(args)
     name = args[:name]
     domain = args[:domain]
     
+    # TODO: ShadowPuppet needs template helper
+    conf_file = 'etc/apache2/sites-available/#{name}'
+    conf_template = File.join(File.dirname(__FILE__), "../../templates", "passenger.vhost.erb")
+    conf_template_contents = File.read(conf_template)
+    conf_content = ERB.new(conf_template_contents).result(binding)
+    file conf_file, { :ensure => :present, :content => conf_content }
     
+    exec "passenger_enable_site", { :command => "/usr/sbin/a2ensite #{name}", 
+                             :creates => '/etc/apache2/sites-enabled/#{name}',
+                             :require => [package("apache2-mpm-worker"), file(conf_file)]}
   end
 end
