@@ -17,7 +17,7 @@ module MySQLRecipes
     sql = "GRANT ALL PRIVILEGES ON #{db_name}.* TO #{db_user}@localhost IDENTIFIED BY '#{db_password}';"
     
     # ok, this could compare the shown grants for the user to what 
-    exec "create_user", { :command => "/usr/bin/mysql -u root -e '#{sql}'", 
+    exec "create_user", { :command => "/usr/bin/mysql -u root -e \"#{sql}\"", 
                              :unless => "mysql -u root -p -e 'show grants for #{db_name};'",
                              :require => [exec("create_database")]}                       
   end
