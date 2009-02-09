@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + 'lib/recipes.rb'
+require File.dirname(__FILE__) + '/lib/rails_manifest.rb'
 
 # This class is for a *single* application. This could be easily implemented to load json/yaml.
 class ApplicationManifest < RailsManifest
