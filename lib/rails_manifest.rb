@@ -31,7 +31,7 @@ class RailsManifest < ShadowPuppet::Manifest
   recipe :mysql_server, :mysql_gem
   recipe :apache_server
   recipe :passenger_gem, :passenger_apache_module
-  recipe :rails_gem, :rails_user, :rails_prefix, :rails_root
+  recipe :rails_gem, :rails_prefix, :rails_root
   recipe :mysql_database
   recipe :application_packages
   recipe :passenger_site

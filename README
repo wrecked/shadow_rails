@@ -2,7 +2,7 @@ This project is meant to be forked and modified for your own use. It illustrates
 using ShadowPuppet to manage system configuration and Capistrano for deployment.
 
 Please note:
-* runs only on a completely clean install.
+* runs only on a completely clean install and assumes the user is 'rails'
 * if you hate your life, run on a production system.
 * only installs one kind of Ruby. Edit bin/bootstrap to select.
 * no root mysql passwd set.
@@ -16,8 +16,8 @@ To get started:
 2. Update shadow_rails/application_manifest.rb with your information and packages. Commit. Push.
 3. Add the following to your deploy.rb:
 
-# set your user with sudo privs
-set :user, "shadow"
+# set user that can write to /u/apps
+set :user, "rails"
 
 # set your github clone url
 set :shadow_repos, "git://github.com/wrecked/shadow_rails.git"
