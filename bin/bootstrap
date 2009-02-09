@@ -9,7 +9,7 @@ echo "Installing build packages"
 apt-get install -y build-essential zlib1g-dev libssl-dev libreadline5-dev
 
 CWD=`pwd`
-$CWD/bin/install_$RUBY
+$CWD/shadow_rails/bin/install_$RUBY
 
 echo "Installing Puppet and Facter"
 gem install puppet --no-rdoc --no-ri
