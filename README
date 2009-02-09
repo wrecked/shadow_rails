@@ -16,7 +16,7 @@ To get started:
 2. Update shadow_rails/application_manifest.rb with your information and packages. Commit. Push.
 3. Add the following to your deploy.rb:
 
-# set user that can write to /u/apps
+# set user that can write to /u/apps and has sudo privs.
 set :user, "rails"
 
 # set your github clone url
