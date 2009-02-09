@@ -1,3 +1,57 @@
-Run the following as 'sudo':
+This project is meant to be forked and modified for your own use. It illustrates 
+using ShadowPuppet to manage system configuration and Capistrano for deployment.
+
+Please note:
+* runs only on a completely clean install.
+* if you hate your life, run on a production system.
+* only installs one kind of Ruby. Edit bin/bootstrap to select.
+* no root mysql passwd set.
+* assumes a single server architecture
+* makes lots of assumptions on names.
+* most likely has bugs. use at own risk.
+
+To get started:
+
+1. Fork and clone this project.
+2. Update shadow_rails/application_manifest.rb with your information and packages. Commit. Push.
+3. Add the following to your deploy.rb:
+
+# set your user with sudo privs
+set :user, "shadow"
+
+# set your github clone url
+set :shadow_repos, "git://github.com/wrecked/shadow_rails.git"
+
+namespace :deploy do
+  
+  desc <<-DESC
+  Bootstrap the system with Ruby, Gems, ShadowPuppet, and ShadowFacter. Setup cap directories.
+  DESC
+  task :setup do
+    sudo "apt-get install -y git-core"
+    run "git clone #{shadow_repos}"
+    sudo '~/shadow_rails/bin/bootstrap'
+    sudo 'shadow_puppet shadow_rails/application_manifest.rb'
+  end
+  
+  
+  before :deploy do
+    run "cd shadow_rails;git pull"
+    sudo 'shadow_puppet shadow_rails/application_manifest.rb'
+  end
+  
+  
+  desc <<-DESC
+  Restart the Passenger processes on the app server by touching tmp/restart.txt.
+  DESC
+  task :restart, :roles => :app do
+    run "touch #{current_path}/tmp/restart.txt"
+  end
+end
+
+4. run 'cap deploy:setup'
+5. run 'cap deploy'
+
+
 
 
