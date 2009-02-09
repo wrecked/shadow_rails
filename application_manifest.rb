@@ -1,6 +1,6 @@
 require './lib/rails_manifest.rb'
 
-# This class is for a *single* application. And yes, these could be easily implemented in json/yaml.
+# This class is for a *single* application. This could be easily implemented to load json/yaml.
 class ApplicationManifest < RailsManifest
   
   # name your app
