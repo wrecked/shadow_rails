@@ -18,7 +18,7 @@ module MySQLRecipes
     
     # ok, this could compare the shown grants for the user to what 
     exec "create_user", { :command => "/usr/bin/mysql -u root -e \"#{sql}\"", 
-                             :unless => "mysql -u root -p -e 'show grants for #{db_user};'",
+                             :unless => "mysql -u root -p -e 'show grants for #{db_user}@localhost;'",
                              :require => [exec("create_database")]}                       
   end
   
