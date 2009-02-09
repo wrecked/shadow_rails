@@ -36,6 +36,7 @@ class RailsManifest < ShadowPuppet::Manifest
   recipe :application_packages
   recipe :passenger_site
   recipe :mysql_user
+  recipe :capistrano_setup
   
   # implement this in subclass if you want
   def applications_packages
