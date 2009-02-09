@@ -7,7 +7,7 @@ apt-get install -y ruby libopenssl-ruby1.8 ruby-dev rdoc
 
 echo "install RubyGems from source"
 pushd /tmp
-wget http://rubyforge.org/frs/download.php/45905/$GEMS.tgz
+wget -q http://rubyforge.org/frs/download.php/45905/$GEMS.tgz
 tar xvzf $GEMS.tgz
 pushd ./$GEMS
 ruby setup.rb --no-rdoc --no-ri

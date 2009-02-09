@@ -7,7 +7,7 @@ REE="ruby-enterprise-1.8.6-20090201"
 
 pushd /tmp
 echo "Downloading REE"
-wget http://rubyforge.org/frs/download.php/51100/$REE.tar.gz
+wget -q http://rubyforge.org/frs/download.php/51100/$REE.tar.gz
 echo "Untar REE"
 tar xvzf $REE.tar.gz
 pushd $REE/
