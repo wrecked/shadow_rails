@@ -3,6 +3,7 @@ require File.dirname(__FILE__) + '/recipes.rb'
 
 Configuration[:user] = "rails"
 Configuration[:group] = "rails"
+# if you change this, fix file resources in rails_recipes.rb
 Configuration[:prefix] = "/u/apps"
 Configuration[:passenger_version] = "2.0.6"
 

@@ -10,7 +10,8 @@ module RailsRecipes
   end
   
   def rails_prefix
-    file Configuration[:prefix], { :ensure => :directory, :owner => Configuration[:user], :group => Configuration[:group], :require => user(Configuration[:user]) }
+    file "/u", { :ensure => :directory, :owner => Configuration[:user], :group => Configuration[:group], :require => user(Configuration[:user]) }
+    file "/u/apps", { :ensure => :directory, :owner => Configuration[:user], :group => Configuration[:group], :require => [file("/u"), user(Configuration[:user])] }
   end
   
   def rails_root
