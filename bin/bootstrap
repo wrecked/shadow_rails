@@ -21,5 +21,8 @@ gem install rspec --no-rdoc --no-ri
 echo "Installing ShadowPuppet and ShadowFacter"
 gem install shadow_puppet shadow_facter --no-rdoc --no-ri
 
+# do this until facter 1.5.4 is released
+gem uninstall facter --version 1.5.3
+
 
 
