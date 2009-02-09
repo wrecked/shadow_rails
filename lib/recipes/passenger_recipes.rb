@@ -32,7 +32,7 @@ module PassengerRecipes
     conf_content = ERB.new(conf_template_contents).result(binding)
     file conf_file, { :ensure => :present, :content => conf_content, :alias => "passenger_conf" }
 
-    exec "enable_passenger", { :command => '/usr/sbin/a2enmod passenger', 
+    exec "enable_passenger", { :command => '/usr/sbin/a2enmod passenger',
                              :unless => 'ls /etc/apache2/mods-enabled/passenger.*',
                              :require => [exec("build_passenger"), package("apache2-mpm-worker"), file("passenger_conf"), file("passenger_load")]}  
   end

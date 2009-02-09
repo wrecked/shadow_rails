@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/recipes.rb'
 
 Configuration[:user] = "rails"
 Configuration[:group] = "rails"
-Configuration[:prefix] = "/var/rails"
+Configuration[:prefix] = "/u/apps"
 Configuration[:passenger_version] = "2.0.6"
 
 class RailsManifest < ShadowPuppet::Manifest
