@@ -34,7 +34,7 @@ module PassengerRecipes
 
     exec "enable_passenger", { :command => '/usr/sbin/a2enmod passenger', 
                              :creates => '/etc/apache2/mods-enabled/passenger.load',
-                             :require => [exec("build_passenger"), package("apache2-mpm-worker"), file(conf_file), file(load_file)]}  
+                             :require => [exec("build_passenger"), package("apache2-mpm-worker"), file("passenger_conf"), file("passenger_load")]}  
   end
   
   def passenger_site(args)
