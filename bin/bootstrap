@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# check for ruby and bail out.
+if [ `which ruby` ]; then
+ echo "Ruby already installed."
+ exit
+fi
+
 # change this if you wants different rubies: ree or ruby
 RUBY="ree"
 
