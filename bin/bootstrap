@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# change this if you wants different rubies
+# change this if you wants different rubies: ree or ruby
 RUBY="ree"
 
 echo "***Bootstrappin' the system!***"
@@ -21,7 +21,7 @@ gem install rspec --no-rdoc --no-ri
 echo "Installing ShadowPuppet and ShadowFacter"
 gem install shadow_puppet shadow_facter --no-rdoc --no-ri
 
-# do this until facter 1.5.4 is released
+# do this until facter 1.5.4 is released and fixes ubuntu bug
 gem uninstall facter --version 1.5.3
 
 
