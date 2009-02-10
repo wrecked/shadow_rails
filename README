@@ -25,8 +25,7 @@ set :user, "rails"
 # set your github clone url
 set :shadow_repos, "git://github.com/wrecked/shadow_rails.git"
 
-namespace :deploy do
-  
+namespace :deploy do  
   desc <<-DESC
   Bootstrap the system with Ruby, Gems, ShadowPuppet, and ShadowFacter. Setup cap directories.
   DESC
@@ -34,16 +33,22 @@ namespace :deploy do
     sudo "apt-get install -y git-core"
     run "git clone #{shadow_repos}"
     sudo '~/shadow_rails/bin/bootstrap'
-    sudo 'shadow_puppet shadow_rails/application_manifest.rb'
+    apply_manifest
   end
   
   
   before :deploy do
-    run "cd shadow_rails;git pull"
-    sudo 'shadow_puppet shadow_rails/application_manifest.rb'
+    apply_manifest
   end
   
-  
+  desc <<-DESC
+  Pull latest manifest and apply.
+  DESC
+  task :apply_manifest do
+   	run "cd shadow_rails;git pull"
+    sudo 'shadow_puppet shadow_rails/application_manifest.rb'
+  end
+
   desc <<-DESC
   Restart the Passenger processes on the app server by touching tmp/restart.txt.
   DESC
@@ -51,10 +56,11 @@ namespace :deploy do
     run "touch #{current_path}/tmp/restart.txt"
   end
 end
+
 #############################################
 
-4. run 'cap deploy:setup' to bootstrap the server.
-5. run 'cap deploy' to apply manifest the server.
+4. run 'cap deploy:setup' to bootstrap the server including capistrano setup.
+5. run 'cap deploy' to apply manifest the server before deploy.
 
 
 
