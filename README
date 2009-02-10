@@ -47,7 +47,7 @@ namespace :deploy do
     sudo 'shadow_puppet shadow_rails/application_manifest.rb'
   end
 
-  before :deploy do
+  before(:deploy, 'deploy:migrations') do
     apply_manifest
   end
 
@@ -62,7 +62,7 @@ end
 #############################################
 
 4. run 'cap deploy:bootstrap' to bootstrap the server.
-5. run 'cap deploy' to apply manifest the server before deploy.
+5. run 'cap deploy' to apply manifest on the server before deploy.
 
 
 
