@@ -1,6 +1,7 @@
 require File.join(File.dirname(__FILE__), 'configuration.rb')
 
 module CapistranoRecipes
+  
   def capistrano_setup
     root_path = "#{Configuration[:prefix]}/#{Configuration[:name]}"
     
@@ -12,5 +13,6 @@ module CapistranoRecipes
     file "#{root_path}/shared/pids", file_args
     file "#{root_path}/shared/system", file_args
     file "#{root_path}/shared/log", file_args
+    
   end
 end

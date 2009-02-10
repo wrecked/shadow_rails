@@ -26,15 +26,15 @@ To get started:
 set :user, "rails"
 
 # set your github clone url
-set :shadow_repos, "git://github.com/wrecked/shadow_rails.git"
+set :shadow_repository, "git://github.com/wrecked/shadow_rails.git"
 
 namespace :deploy do
   desc <<-DESC
-  Bootstrap the system with Ruby, Gems, ShadowPuppet, and ShadowFacter. Setup cap directories.
+  Bootstrap the system with Git, Ruby, Gems, ShadowPuppet, and ShadowFacter. Setup cap directories.
   DESC
   task :bootstrap do
     sudo "apt-get install -y git-core"
-    run "git clone #{shadow_repos}"
+    run "git clone #{shadow_repository}"
     sudo '~/shadow_rails/bin/bootstrap'
   end
 
