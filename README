@@ -3,18 +3,21 @@ using ShadowPuppet to manage system configuration and Capistrano for deployment.
 
 Please note:
 * runs only on a completely clean install and assumes the user is 'rails'
-* if you hate your life, run on a production system.
+* if you hate your life, blindly run on a production system.
 * only installs one kind of Ruby. Edit bin/bootstrap to select.
 * no root mysql passwd set.
 * assumes a single server architecture
 * makes lots of assumptions on names.
-* most likely has bugs. use at own risk.
+* capistrano out book is crazy noisy.
+* has bugs. use at own risk.
 
 To get started:
 
 1. Fork and clone this project.
 2. Update shadow_rails/application_manifest.rb with your information and packages. Commit. Push.
-3. Add the following to your deploy.rb:
+3. Add the following to config/deploy.rb:
+
+#############################################
 
 # set user that can write to /u/apps and has sudo privs.
 set :user, "rails"
@@ -48,9 +51,10 @@ namespace :deploy do
     run "touch #{current_path}/tmp/restart.txt"
   end
 end
+#############################################
 
-4. run 'cap deploy:setup'
-5. run 'cap deploy'
+4. run 'cap deploy:setup' to bootstrap the server.
+5. run 'cap deploy' to apply manifest the server.
 
 
 
