@@ -54,7 +54,7 @@ module PassengerRecipes
     conf_file = "/etc/apache2/sites-available/#{name}"
     conf_template = File.join(File.dirname(__FILE__), "../../templates", "passenger.vhost.erb")
     conf_template_contents = File.read(conf_template)
-    doc_root = Configuration[:prefix] + "/" + name 
+    doc_root = Configuration[:prefix] + "/" + name + "/current/public"
     conf_content = ERB.new(conf_template_contents).result(binding)
     file conf_file, { :ensure => :present, :content => conf_content, :notify => service("apache2") }
     
