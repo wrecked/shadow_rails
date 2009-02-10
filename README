@@ -12,7 +12,7 @@ Please note:
 * you can edit passenger conf files in ./templates
 * assumes a single server architecture.
 * bootstrapping is slow due to compiling REE and passenger from scratch to support 64bit.
-* capistrano output is crazy noisy.
+* capistrano output is crazy noisy for bootstrap. use 'cap -q'.
 * use at own risk.
 
 To get started:
@@ -34,7 +34,7 @@ namespace :deploy do
   Bootstrap the system with Git, Ruby, Gems, ShadowPuppet, and ShadowFacter. Setup cap directories.
   DESC
   task :bootstrap do
-    sudo "apt-get install -y git-core"
+    sudo "apt-get install -v -y git-core"
     run "git clone #{shadow_repository}"
     sudo '~/shadow_rails/bin/bootstrap'
   end
@@ -65,7 +65,7 @@ end
 
 #############################################
 
-4. run 'cap deploy:bootstrap' to bootstrap the server.
+4. run 'cap -q deploy:bootstrap' to bootstrap the server.
 5. run 'cap deploy' to apply manifest on the server before deploy.
 
 
