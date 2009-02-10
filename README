@@ -7,8 +7,9 @@ Please note:
 * if you hate your life, blindly run on a production system.
 * only installs one kind of Ruby. edit bin/bootstrap to select enterpriseyness.
 * no root mysql passwd set.
+* database name is 'name_production' and username is 'name'. update config/database.yml
+* look at all the things you aren't giving cute names.
 * assumes a single server architecture.
-* look at all the things you aren't naming.
 * bootstrapping is slow due to compiling REE and passenger from scratch.
 * capistrano output is crazy noisy.
 * use at own risk.
