@@ -2,14 +2,16 @@ This project is meant to be forked and modified for your own use. It illustrates
 using ShadowPuppet to manage system configuration and Capistrano for deployment.
 
 Please note:
-* runs only on a completely clean install and assumes the user is 'rails'
+* only works on Ubuntu 8.10
+* runs on a completely clean install and assumes the user is 'rails'
 * if you hate your life, blindly run on a production system.
-* only installs one kind of Ruby. Edit bin/bootstrap to select.
+* only installs one kind of Ruby. edit bin/bootstrap to select enterpriseyness.
 * no root mysql passwd set.
-* assumes a single server architecture
-* makes lots of assumptions on names.
-* capistrano out book is crazy noisy.
-* has bugs. use at own risk.
+* assumes a single server architecture.
+* look at all the things you aren't naming.
+* bootstrapping is slow due to compiling REE and passenger from scratch.
+* capistrano output is crazy noisy.
+* use at own risk.
 
 To get started:
 
@@ -29,11 +31,10 @@ namespace :deploy do
   desc <<-DESC
   Bootstrap the system with Ruby, Gems, ShadowPuppet, and ShadowFacter. Setup cap directories.
   DESC
-  task :setup do
+  task :bootstrap do
     sudo "apt-get install -y git-core"
     run "git clone #{shadow_repos}"
     sudo '~/shadow_rails/bin/bootstrap'
-    apply_manifest
   end
   
   
@@ -59,7 +60,7 @@ end
 
 #############################################
 
-4. run 'cap deploy:setup' to bootstrap the server including capistrano setup.
+4. run 'cap deploy:bootstrap' to bootstrap the server.
 5. run 'cap deploy' to apply manifest the server before deploy.
 
 
