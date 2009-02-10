@@ -10,7 +10,7 @@ Please note:
 * database name is 'name_production' and username is 'name'. update config/database.yml
 * look at all the things you aren't giving cute names.
 * assumes a single server architecture.
-* bootstrapping is slow due to compiling REE and passenger from scratch.
+* bootstrapping is slow due to compiling REE and passenger from scratch to support 64bit.
 * capistrano output is crazy noisy.
 * use at own risk.
 
