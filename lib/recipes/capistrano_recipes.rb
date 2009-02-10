@@ -11,5 +11,6 @@ module CapistranoRecipes
     file_args[:require] = file("#{root_path}/shared")
     file "#{root_path}/shared/config", file_args
     file "#{root_path}/shared/system", file_args
+    file "#{root_path}/shared/log", file_args
   end
 end
