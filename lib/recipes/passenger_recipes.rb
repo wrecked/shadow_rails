@@ -12,7 +12,10 @@ module PassengerRecipes
    
     path = "/usr/lib/ruby/gems/1.8/gems/passenger-#{Configuration[:passenger_version]}"
     
+    # Install Apache2 developer library
     package "apache2-threaded-dev", :ensure => :installed
+    
+    # Build Passenger from source
     exec "build_passenger", {:cwd => path, 
                              :command => '/usr/bin/ruby -S rake clean apache2', 
                              :creates => "#{path}/ext/apache2/mod_passenger.so", 
@@ -38,9 +41,9 @@ module PassengerRecipes
                       :require => [exec("build_passenger")], 
                       :alias => "passenger_conf" }
 
-    exec "enable_passenger", { :command => '/usr/sbin/a2enmod passenger',
-                             :unless => 'ls /etc/apache2/mods-enabled/passenger.*',
-                             :require => [exec("build_passenger"), file("passenger_conf"), file("passenger_load")]}  
+    exec "enable_passenger", { :command => '/usr/sbin/a2enmod passenger', 
+                               :unless => 'ls /etc/apache2/mods-enabled/passenger.*',
+                               :require => [exec("build_passenger"), file("passenger_conf"), file("passenger_load")]}  
   end
   
   def passenger_site(args)
