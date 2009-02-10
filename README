@@ -47,7 +47,11 @@ namespace :deploy do
     sudo 'shadow_puppet shadow_rails/application_manifest.rb'
   end
 
-  before(:deploy, 'deploy:migrations') do
+  before :deploy do
+    apply_manifest
+  end
+
+  before 'deploy:migrations' do
     apply_manifest
   end
 
