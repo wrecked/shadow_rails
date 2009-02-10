@@ -34,7 +34,7 @@ namespace :deploy do
   Bootstrap the system with Git, Ruby, Gems, ShadowPuppet, and ShadowFacter. Setup cap directories.
   DESC
   task :bootstrap do
-    sudo "apt-get install -v -y git-core"
+    sudo "apt-get install -q -y git-core"
     run "git clone #{shadow_repository}"
     sudo '~/shadow_rails/bin/bootstrap'
   end
