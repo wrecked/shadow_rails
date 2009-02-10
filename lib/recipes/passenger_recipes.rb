@@ -56,10 +56,14 @@ module PassengerRecipes
     conf_template_contents = File.read(conf_template)
     doc_root = Configuration[:prefix] + "/" + name + "/current/public"
     conf_content = ERB.new(conf_template_contents).result(binding)
-    file conf_file, { :ensure => :present, :content => conf_content, :notify => service("apache2"), :alias => "passenger_vhost" }
+    file conf_file, { :ensure => :present, 
+                      :content => conf_content, 
+                      :notify => service("apache2"), 
+                      :alias => "passenger_vhost",
+                      :require => exec("enable_passenger") }
 
     exec "passenger_enable_site", { :command => "/usr/sbin/a2ensite #{name}",
                              :creates => '/etc/apache2/sites-enabled/#{name}',
-                             :require => [package("apache2-mpm-worker"), file("passenger_vhost")]}
+                             :require => [package("apache2-mpm-worker"), file("passenger_vhost")] }
   end
 end
