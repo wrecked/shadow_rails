@@ -2,7 +2,7 @@ require File.join(File.dirname(__FILE__), 'configuration.rb')
 
 module RailsRecipes 
   def rails_gem
-    package "rails", :ensure => :installed, :provider => :gem
+    package "rails", { :ensure => :installed, :provider => :gem }
   end
   
   def rails_prefix
@@ -12,6 +12,6 @@ module RailsRecipes
   
   def rails_root
     path = "#{Configuration[:prefix]}/#{Configuration[:name]}"
-    file path, { :ensure => :directory, :owner => Configuration[:user], :group => Configuration[:group]
+    file path, { :ensure => :directory, :owner => Configuration[:user], :group => Configuration[:group] }
   end
 end
