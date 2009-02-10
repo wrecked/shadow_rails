@@ -3,7 +3,7 @@ require File.join(File.dirname(__FILE__), 'configuration.rb')
 module ApacheRecipes
 
   def apache_server
-    package "apache2-mpm-worker", :ensure => :installed 
+    package "apache2-mpm-worker", :ensure => :installed
     service "apache2", :require => package("apache2-mpm-worker"), :subscribe => [file("passenger_conf"), file("passenger_load") ]
   end
 

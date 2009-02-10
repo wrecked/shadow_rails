@@ -14,21 +14,21 @@ class RailsManifest < ShadowPuppet::Manifest
   include ApacheRecipes
   include RailsRecipes
   include CapistranoRecipes
-  
+
   class << self
     def name(value)
       Configuration[:name] = value
     end
-    
+
     def domain(value)
       Configuration[:domain] = value
     end
-    
+
     def database_password(value)
       Configuration[:database_password] = value
     end
   end
-  
+
   recipe :mysql_server, :mysql_gem
   recipe :apache_server
   recipe :passenger_gem, :passenger_apache_module
@@ -38,9 +38,9 @@ class RailsManifest < ShadowPuppet::Manifest
   recipe :passenger_site
   recipe :mysql_user
   recipe :capistrano_setup
-  
+
   # implement this in subclass if you want
   def applications_packages
   end
-  
-end	
+
+end

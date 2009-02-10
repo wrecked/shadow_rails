@@ -8,25 +8,25 @@
 require File.join(File.dirname(__FILE__), 'spec_facts.rb')
 
 describe "My rails system" do
-  
+
   before :each do
     @installed = facts(:installed)
   end
-  
+
   it "has ruby on rails installed and available" do
     @installed[:rails].should equal(true)
   end
-  
+
   it "has mysql installed and available" do
     @installed[:mysql].should equal(true)
   end
-  
+
   it "has mysql gem installed and available" do
     @installed[:mysql_gem].should equal(true)
   end
-  
+
   it "has passenger gem installed and available" do
     @installed[:passenger_gem].should equal(true)
   end
-  
+
 end
