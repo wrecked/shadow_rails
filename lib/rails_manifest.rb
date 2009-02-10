@@ -2,7 +2,8 @@ require 'shadow_puppet'
 require File.dirname(__FILE__) + '/recipes.rb'
 
 Configuration[:user] = "rails"
-Configuration[:group] = "rails"
+Configuration[:group] = Configuration[:user]
+
 # if you change this, fix file resources in rails_recipes.rb
 Configuration[:prefix] = "/u/apps"
 Configuration[:passenger_version] = "2.0.6"
