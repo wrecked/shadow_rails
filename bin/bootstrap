@@ -12,7 +12,7 @@ RUBY="ree"
 echo "***Bootstrappin' the system!***"
 
 echo "Installing build packages"
-apt-get install -q -y build-essential zlib1g-dev libssl-dev libreadline5-dev
+apt-get install -q -y build-essential zlib1g-dev libssl-dev libreadline5-dev wget
 
 CWD=`pwd`
 $CWD/shadow_rails/bin/install_$RUBY
